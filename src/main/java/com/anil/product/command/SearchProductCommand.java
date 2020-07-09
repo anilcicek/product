@@ -7,20 +7,23 @@ import com.anil.product.base.product.SearchProductResponseType;
 import com.anil.product.entity.Product;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchProductCommand extends BaseProductCommand {
 
-    List<Product> productList;
+    Collection<Product> productList;
     String searchKey;
-    RequestResponseType response;
+    String searchVal;
     SearchProductResponseType searchProductResponseType;
 
 
-    public SearchProductCommand(RequestInfoType requestInfoType, List<Product> productList, String searchKey ){
+    public SearchProductCommand(RequestInfoType requestInfoType, Collection<Product> productList, String searchKey , String searchVal ){
         super(requestInfoType);
         this.productList = productList;
         this.searchKey=searchKey;
+        this.searchVal=searchVal;
         searchProductResponseType = new SearchProductResponseType();
         this.validateRequestInfo();
 
@@ -54,8 +57,8 @@ public class SearchProductCommand extends BaseProductCommand {
             if(resultList!=null && !resultList.isEmpty()){
 
                 searchProductResponseType.setResultList(resultList);
-                response.setReturnCode(GeneralEnumaration.InternalReturnCodes.INQUIRE_NO_RECORD.getReturnCode());
-                response.setReturnMessage(GeneralEnumaration.InternalReturnCodes.INQUIRE_NO_RECORD.toString());
+                response.setReturnCode(GeneralEnumaration.InternalReturnCodes.SUCCESS.getReturnCode());
+                response.setReturnMessage(GeneralEnumaration.InternalReturnCodes.SUCCESS.toString());
 
             }else{
 
@@ -72,15 +75,14 @@ public class SearchProductCommand extends BaseProductCommand {
         }
 
 
-
-
     }
 
     private List<Product> getProductByCategoryCode(){
+        List<Product> filteredList;
+        filteredList = this.productList.stream().filter(p -> searchVal.equals(p.getCategory())).collect(Collectors.toList());
 
 
-
-        return null;
+        return filteredList;
     }
 
     public SearchProductResponseType getResult(){

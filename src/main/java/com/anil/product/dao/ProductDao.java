@@ -20,7 +20,7 @@ public class ProductDao implements IProductDao {
         products = new HashMap<Integer,Product>(){
             {
                 put(1,new Product(1,"Gozluk","12TL","A"));
-                put(2,new Product(2,"Tshirt","22TL","A"));
+                put(2,new Product(2,"Tshirt","22TL","B"));
                 put(3,new Product(3,"Kot","32TL","A"));
             }
         };

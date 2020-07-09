@@ -1,5 +1,6 @@
 package com.anil.product.controller;
 
+import com.anil.product.base.RequestInfoType;
 import com.anil.product.entity.Product;
 import com.anil.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,14 @@ public class ProductController {
     public void insertProduct(@RequestBody Product product){
 
         productService.insertProduct(product);
+    }
+
+    @RequestMapping( method = RequestMethod.GET ,value ="/inquireProducts/{searchKey}/{searchVal}")
+    public Collection<Product> inquireProductBySearchKey(@PathVariable String searchVal, @PathVariable String searchKey){
+
+        RequestInfoType requestInfoType = new RequestInfoType();
+        return productService.inquireProductBySearchKey(searchKey,searchVal,requestInfoType);
+
     }
 
 
