@@ -1,5 +1,9 @@
 package com.anil.product.service;
 
+import com.anil.product.base.BaseUtils;
+import com.anil.product.base.RequestInfoType;
+import com.anil.product.base.product.SearchProductResponseType;
+import com.anil.product.command.SearchProductCommand;
 import com.anil.product.dao.IProductDao;
 import com.anil.product.dao.ProductDao;
 import com.anil.product.entity.Product;
@@ -38,5 +42,19 @@ public class ProductService {
     public void insertProduct(Product product){
         this.productDao.insertProduct(product);
 
+    }
+
+    public Collection<Product> inquireProductBySearchKey(String searchKey, String searchVal, RequestInfoType requestInfoType){
+
+        SearchProductCommand command = new SearchProductCommand(requestInfoType,this.productDao.getAllProducts(),searchKey,searchVal);
+        command.processCommand();
+
+        SearchProductResponseType inquireProductResponse = command.getResult();
+
+        if(BaseUtils.isOperationSuccess(inquireProductResponse.getRequestResponseType())){
+            return inquireProductResponse.getResultList();
+        }
+
+        return null;
     }
 }
