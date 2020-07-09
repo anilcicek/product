@@ -19,9 +19,13 @@ public class ProductDao implements IProductDao {
     static {
         products = new HashMap<Integer,Product>(){
             {
-                put(1,new Product(1,"Gozluk","12TL","A"));
-                put(2,new Product(2,"Tshirt","22TL","B"));
-                put(3,new Product(3,"Kot","32TL","A"));
+                put(1,new Product(1,"Gozluk",12,"ACCESSORY"));
+                put(2,new Product(2,"Tshirt",22,"CLOTHING"));
+                put(3,new Product(3,"Kot",32,"CLOTHING"));
+                put(4,new Product(4,"Saat",15,"ACCESSORY"));
+                put(5,new Product(5,"Çanta",60,"BAG"));
+                put(6,new Product(6,"Parfüm",80,"ACCESSORY"));
+                put(7,new Product(7,"Ayakakbi",120,"SHOE"));
             }
         };
 
