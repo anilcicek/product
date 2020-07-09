@@ -57,4 +57,18 @@ public class ProductService {
 
         return null;
     }
+
+    public Collection<Product> inquireProductByPrice(String searchKey, String searchVal,String direction, RequestInfoType requestInfoType){
+
+        SearchProductCommand command = new SearchProductCommand(requestInfoType,this.productDao.getAllProducts(),searchKey,searchVal,direction);
+        command.processCommand();
+
+        SearchProductResponseType inquireProductResponse = command.getResult();
+
+        if(BaseUtils.isOperationSuccess(inquireProductResponse.getRequestResponseType())){
+            return inquireProductResponse.getResultList();
+        }
+
+        return null;
+    }
 }

@@ -19,7 +19,7 @@ public class MongoProductDao implements IProductDao {
     public Collection<Product> getAllProducts() {
         return new ArrayList<Product>(){
             {
-                add(new Product(1,"Gozluk","12","A"));
+                add(new Product(1,"Gozluk",12,"A"));
             }
 
         };

@@ -53,6 +53,14 @@ public class ProductController {
 
     }
 
+    @RequestMapping( method = RequestMethod.GET ,value ="/inquireProductsByPrice/{searchKey}/{searchVal}/{direcion}")
+    public Collection<Product> inquireProductsByPrice(@PathVariable String searchVal, @PathVariable String searchKey, @PathVariable String direcion){
+
+        RequestInfoType requestInfoType = new RequestInfoType();
+        return productService.inquireProductByPrice(searchKey,searchVal,direcion,requestInfoType);
+
+    }
+
 
 
 

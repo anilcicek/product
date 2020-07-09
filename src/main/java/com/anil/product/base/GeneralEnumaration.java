@@ -22,7 +22,8 @@ public class GeneralEnumaration {
 
     public enum ProductSearchType{
 
-        CATEGORY("CATEGORY");
+        CATEGORY("CATEGORY"),
+        PRICE("PRICE");
 
         private String searchKey;
 
@@ -32,6 +33,22 @@ public class GeneralEnumaration {
 
         public String getSearchKey() {
             return searchKey;
+        }
+    }
+
+    public enum ProductPriceSearchDirection{
+
+        GREATER("GREATER"),
+        LESS("LESS");
+
+        private String direction;
+
+        ProductPriceSearchDirection(String direction){
+            this.direction=direction;
+        }
+
+        public String getDirection() {
+            return direction;
         }
     }
 
